@@ -1,0 +1,99 @@
+import java.util.*; 
+class Main {
+    public static void main(String[] args) {
+         Scanner sc=new Scanner(System.in);
+         System.out.println("enter the size : ");
+         int n=sc.nextInt();
+         char a[][]=new char[n][n];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                a[i][j]='-';
+            }
+        }
+        print(a,n);
+        
+        char curplyr='x';
+        // boolean haswon=false;
+        int moves=0;
+        while(moves<n*n){
+        System.out.println("enter the row and col :");
+        int row=sc.nextInt();
+        int col=sc.nextInt();
+        if(row>=n || row<0 ||col<0 || col>=n){
+            System.out.println("out of bound Invalid");
+        }
+        else{
+            if(a[row][col]=='-'){
+                a[row][col]=curplyr;
+                moves++;
+                print(a,n);
+                if(win(a,n,curplyr)){
+                
+                System.out.println(curplyr+" won");
+                break;
+                }
+                curplyr=(curplyr=='x') ? '0':'x';
+                if(moves==n*n)System.out.println("draw");
+            }
+            else{
+                System.out.println("invalid move");
+            }
+        }
+        }  
+       }
+        public static void print(char[][]a,int n){
+            for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+               System.out.print(a[i][j]);
+            }
+            System.out.println();
+        }
+        }
+        public static boolean win(char[][]a,int n,char curplyr){
+         if(hori(a,n,curplyr) || vert(a,n,curplyr) || dig(a,n,curplyr) || opp(a,n,curplyr))return true;
+          
+          return false;
+        }
+        public static boolean hori(char[][] a, int n, char curplyr) {
+        for (int i = 0; i < n; i++) {
+            boolean rowWin = true;
+            for (int j = 0; j < n; j++) {
+                if (a[i][j] != curplyr) {
+                    rowWin = false;
+                    break;
+                }
+            }
+            if (rowWin) return true;
+        }
+        return false;
+    }
+
+    public static boolean vert(char[][] a, int n, char curplyr) {
+        for (int j = 0; j < n; j++) {
+            boolean colWin = true;
+            for (int i = 0; i < n; i++) {
+                if (a[i][j] != curplyr) {
+                    colWin = false;
+                    break;
+                }
+            }
+            if (colWin) return true;
+        }
+        return false;
+    }
+            public static boolean dig(char[][]a,int n,char curplyr){ 
+              for(int i=0;i<n;i++){
+                if(a[i][i]!=curplyr)return false;
+                
+            }
+            return true;
+            }
+        public static boolean opp(char[][]a,int n,char curplyr){ 
+               for(int i=0;i<n;i++){
+                if(a[i][n-1-i]!=curplyr)return false;
+                
+            }
+            return true;
+     }
+    
+}
