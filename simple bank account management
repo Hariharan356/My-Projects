@@ -1,0 +1,72 @@
+import java.util.*;
+
+class Main {
+    static Scanner sc =new Scanner(System.in);
+    public static void main(String[] args) {
+    // variable declarations
+    
+    double bal=0;
+    boolean isrunning=true;
+    while(isrunning){
+        System.out.println("---------BANK----------");
+    System.out.println("***********************");
+    System.out.println("1.CHECK BALANCE");
+    System.out.println("2.DEPOSIT");
+    System.out.println("3.WITHDRAW");
+    System.out.println("4.EXIT");
+    System.out.println("***********************");
+    System.out.println("enter a choice (1 - 4)");
+    int n=sc.nextInt();
+        if(n==1){
+            System.out.println("Your current balance is "+bal);
+        }
+        else if(n==2){
+            bal+= deposit(bal);
+        }
+        else if(n==3){
+            bal-= withdraw(bal);
+        }
+        else if(n==4){
+            isrunning = false;
+            System.out.println("Thanks for visiting our bank comeagain !");
+        }
+        else{
+            System.out.println("INVALID CHOICE");
+        }
+    }
+    }
+    // check bal
+  
+    // deposit
+    static double deposit(double balance){
+        System.out.println("enter the amount to be deposited:");
+        double amt=sc.nextDouble();
+        if(amt<0){
+            System.out.println("amount cannot be negative");
+        }
+        // balance=balance+amt;
+        else{
+        System.out.println("amount deposited successfully");
+        }
+        return amt;
+    }
+    
+    // withdraw
+    static double withdraw(double balance){
+         System.out.println("enter the amount to be withdraw:");
+         double amt=sc.nextDouble();
+         if(amt>balance){
+              System.out.println("Insufficient money");
+         }
+         else if (amt<0){
+            System.out.println("amount cannot be negative");
+        }
+        //  balance=balance - amt;
+        else{
+          System.out.println("amount withdrawn successfully");
+        }
+          return amt;
+    }
+    
+    
+}
